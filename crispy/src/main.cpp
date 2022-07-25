@@ -1,4 +1,5 @@
-#include "main.h"
+#include "../include/main.h" 
+#include "../include/pros/misc.h" 
 
 /**
  * A callback function for LLEMU's center button.
@@ -7,6 +8,7 @@
  * "I was pressed!" and nothing.
  */
 void on_center_button() {
+	
 	static bool pressed = false;
 	pressed = !pressed;
 	if (pressed) {
@@ -14,6 +16,7 @@ void on_center_button() {
 	} else {
 		pros::lcd::clear_line(2);
 	}
+	
 }
 
 
