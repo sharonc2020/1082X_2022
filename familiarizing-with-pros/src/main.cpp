@@ -1,4 +1,5 @@
-#include "main.h"
+#include "../include/main.h" 
+#include "../include/pros/misc.h" 
 
 /**
  * A callback function for LLEMU's center button.
