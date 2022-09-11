@@ -80,16 +80,53 @@ void autonomous() {}
  */
 
 void opcontrol() {
+	bool toggle = false;
+	bool latch = false;
+	int power = 100;
+
 	while(true) {
 		
 		//control drive
 		setDriveMotors();
 		setIntakeMotorsPress();
-		setFlywheelMotors();
 		setFlywheelPistonValue();
 		setRollerMotors();
+
+		    if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_UP)){
+        power += 5;
+    } else if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN)){
+        power -= 5;
+    } else if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT)){
+        power -= 1;
+    } else if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_RIGHT)){
+        power += 1;
+    }
+
+    if(power >= 100){
+        power = 100;
+    } else if(power <= 0){
+        power = 0;
+    }
+
+		if(toggle){
+			setFlywheel(power);
+		} else{
+			setFlywheel(0);
+		}
+
+	  	if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_X)){
+			if(!latch){
+				toggle = !toggle;
+				latch = true;
+			}
+		}	else{
+			latch = false;
+		}
+
+		controller.clear();
+		controller.print(1, 1, "hello");
 		
-		pros::delay(10);
+		pros::delay(20);
 	}
 }
 
