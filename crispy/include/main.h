@@ -78,7 +78,9 @@ void opcontrol(void);
 #include "subsystemHeaders/globals.hpp"
 #include "subsystemHeaders/intake.hpp"
 #include "subsystemHeaders/roller.hpp"
-#include "autonHeaders/pid.h"
+#include "autonHeaders/pidLateral.hpp"
+#include "autonHeaders/pidTurn.hpp"
+
 
 /**
  * You can add C++-only headers here
