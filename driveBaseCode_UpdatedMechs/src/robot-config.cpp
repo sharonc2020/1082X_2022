@@ -18,8 +18,8 @@ motor RTop = motor(PORT20, ratio6_1, false);
 /////////////////////////////////////////////////////////////////////////////
 digital_out pneu = digital_out(Brain.ThreeWirePort.A);
 
-motor flywheelMotor1 = motor(PORT8, ratio6_1, false);
-motor flywheelMotor2 = motor(PORT7, ratio6_1, false);
+motor flywheelMotor1 = motor(PORT8, ratio6_1, true);
+motor flywheelMotor2 = motor(PORT7, ratio6_1, true);
 motor_group flywheelGroup = motor_group(flywheelMotor1, flywheelMotor2);
 
 motor intake = motor(PORT3, ratio6_1, false);

@@ -13,10 +13,14 @@ void setFlywheelPiston(bool set){
     flywheelPiston.set_value(set);
 }
 
+//conditions for the flywheel piston - uses Button A & B
 void setFlywheelPistonValue(){
     if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_A)){
         setFlywheelPiston(true);
+        
     } else if(!controller.get_digital(pros::E_CONTROLLER_DIGITAL_B)){
         setFlywheelPiston(false);
     }    
 }
+
+

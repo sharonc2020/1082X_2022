@@ -80,6 +80,7 @@ void opcontrol(void);
 #include "subsystemHeaders/roller.hpp"
 #include "autonHeaders/pidLateral.hpp"
 #include "autonHeaders/pidTurn.hpp"
+#include "autonHeaders/hardcodeFunctions.hpp"
 
 
 /**

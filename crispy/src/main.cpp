@@ -29,9 +29,16 @@ void on_center_button() {
  */
 void initialize() {
 	pros::lcd::initialize();
-	pros::lcd::set_text(1, "Hello PROS User!");
+	pros::lcd::set_text(1, "Sharon was here");
 
-	pros::lcd::register_btn1_cb(on_center_button);
+	fleft.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+	fright.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+	bleft.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+	bright.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+
+	roller.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
+	intake.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+	
 }
 
 /**
@@ -63,7 +70,10 @@ void competition_initialize() {}
  * will be stopped. Re-enabling the robot will restart the task, not re-start it
  * from where it left off.
  */
-void autonomous() {}
+void autonomous() {
+	fleft.move_relative(180.0, 80);
+	
+}
 
 /**
  * Runs the operator control code. This function will be started in its own task
@@ -82,32 +92,34 @@ void autonomous() {}
 void opcontrol() {
 	bool toggle = false;
 	bool latch = false;
-	int power = 100;
+	int power = 93;
 
 	while(true) {
 		
-		//control drive
+		//control drive methods
 		setDriveMotors();
 		setIntakeMotorsPress();
-		setFlywheelPistonValue();
 		setRollerMotors();
+		setFlywheelPistonValue();
 
-		    if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_UP)){
-        power += 5;
-    } else if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN)){
-        power -= 5;
-    } else if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT)){
-        power -= 1;
-    } else if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_RIGHT)){
-        power += 1;
-    }
+		//adjustable flywheel speed
+		if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_UP)){
+			power = 100;
+		} else if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN)){
+			//power  = 50;
+		} else if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT)){
+			power = 93;
+		} else if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_RIGHT)){
+			//power += 1;
+		}
+		//sets flywheel speed to the variable "power"
+		// if(power >= 100){
+		// 	power = 100;
+		// } else if(power <= 0){
+		// 	power = 0;
+		// }
 
-    if(power >= 100){
-        power = 100;
-    } else if(power <= 0){
-        power = 0;
-    }
-
+		//button toggling
 		if(toggle){
 			setFlywheel(power);
 		} else{
