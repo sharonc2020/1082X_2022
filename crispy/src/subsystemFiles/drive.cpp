@@ -22,14 +22,27 @@ void setDriveMotors() {
 
 //sets the motors to the speed that was calculated
 void setDrive(int left, int right) {
-    fleft.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-    bleft.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-    fright.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-    bright.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-
     fleft = left;
     bleft = left;
     fright = right;
     bright = right;
-}
 
+    fleft.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+    bleft.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+    fright.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+    bright.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+}
+//////////////////OKAPI TESTS BEGIN HERE/////////////////////////////
+void okapiChassisSetup(){
+        std::shared_ptr<okapi::ChassisController> drive =
+        ChassisControllerBuilder()
+            .withMotors({1, -11}, {-10,20})
+            // Green gearset, 4 in wheel diam, 11.5 in wheel track  //UPDATE THIS IN A BIT
+            //ADD WITH SENSORS//////////////////////////////////////////////////////////////////////////////////////////////////
+            .withSensors(
+        RotationSensor{1}, // Left encoder in V5 port 1
+        RotationSensor{2, true}  // Right encoder in V5 port 2 (reversed)
+            )
+            .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
+            .build();
+}
