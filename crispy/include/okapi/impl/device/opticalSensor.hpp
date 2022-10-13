@@ -101,7 +101,9 @@ class OpticalSensor : public ControllerInput<double> {
    * @return The RGBC value if the operation was successful. If the operation failed, all field are
    * set to ``PROS_ERR`` and ``errno`` is set.
    */
+  /**
   pros::c::optical_rgb_s_t getRGB() const;
+  */
 
   /**
    * Get the sensor value for use in a control loop. This method might be automatically called in

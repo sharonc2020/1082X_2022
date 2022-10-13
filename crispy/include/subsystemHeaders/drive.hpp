@@ -5,3 +5,5 @@
 void setDrive(int left, int right);
 
 void setDriveMotors();
+
+void okapiChassisSetup();
