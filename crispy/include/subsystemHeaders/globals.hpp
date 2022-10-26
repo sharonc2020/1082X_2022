@@ -13,6 +13,12 @@ extern pros::Motor bright;
 // extern okapi::Motor okfright;
 // extern okapi::Motor okbleft;
 // extern okapi::Motor okbright;
+
+// extern std::shared_ptr<ChassisController> chassis;
+// extern std::shared_ptr<AsyncPositionController<double, double>> rollerController;
+// extern std::shared_ptr<AsyncPositionController<double, double>> intakeController;
+// extern std::shared_ptr<AsyncPositionController<double, double>> flywheelController;
+
 ///////////////////////////////////////////////////////
 
 //subsystem motors
@@ -24,7 +30,7 @@ extern Motor fly2;
 //pistons
 extern pros::ADIDigitalOut flywheelPiston;
 extern pros::ADIDigitalOut endgameLeft;
-extern pros::ADIDigitalOut endgameRight;
+//extern pros::ADIDigitalOut endgameRight;
 
 //sensors
 extern okapi::RotationSensor rotLeft;
